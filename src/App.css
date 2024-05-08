@@ -1,31 +1,30 @@
 body {
   background-color: #dfe0fc;
-  background-image: url("images1.jpeg");
+  background-image: url('images1.jpeg');
   background-size: cover;
-  /* background-color: #e4f1f8; */
+  height: 100vh;
+  width: 100vw;
 }
 
 #amount {
   position: fixed;
-    top: 0%;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   border: 2px solid rgb(154, 108, 241);
   background-color: rgb(126, 176, 250);
   color: rgb(75, 19, 19);
   font-weight: bold;
   padding: 10px 10px 13px 10px;
   margin: 0px 0px 5px 0px;
-  /* position: fixed; */
 }
+
 .amount {
   width: 100%;
-  /* background-color: #e4f1f8; */
 }
 
 .flex-container {
-  /* background-color: #e4f1f8; */
   display: flex;
   flex-direction: row;
   text-align: left;
@@ -33,53 +32,34 @@ body {
 
 .flex-item-left {
   padding: 10px;
-  flex: 30%;
+  flex: 1.5;
 }
 
 .flex-item-right {
-  padding: 10px;
-  margin: 5px;
-  flex: 70%;
+  flex: 3.5;
 }
 
 .flex-container1 {
-  /* background-color: #e4f1f8; */
   display: flex;
   text-align: center;
   flex-direction: row;
-  /* font-size: 30px; */
-  /* text-align: right; */
 }
 .flex-item-left1 {
-  /* background-color: #f2fcff; */
   text-align: center;
-  padding: 5px;
-  margin: 45px 0px -10px 5px;
-  flex: 30%;
-  width: 496px;
+  margin: 24px 0px 0px 0px;
 }
 
 .flex-item-right1 {
   text-align: center;
   padding: 10px;
-  margin: -10px 2px 0px 2px;
-  flex: 70%;
-}
-
-/* Responsive layout - makes a one column-layout instead of two-column layout */
-@media (max-width: 800px) {
-  .flex-container {
-    flex-direction: column;
-  }
+  width: 100%;
 }
 
 form {
-  /* border: 1px solid black; */
   padding: 10px;
   margin: -10px 2px 0px 0px;
-  width: 491px;
   height: 270px;
-  background-image: url("images1.jpeg");
+  background-image: url('images1.jpeg');
   background-size: cover;
 }
 
@@ -102,27 +82,12 @@ td {
   text-align: center;
 }
 
-#calender {
-  padding: 0px 5px 5px 5px;
-  margin: 5px;
-  height: 325px;
-  width: 500px;
-  /* background-color: azure; */
-}
-
 .react-calendar {
-  width: 490px;
   max-width: 100%;
-  /* background: rgb(245, 252, 252); */
-  background-image: url("images.jpeg");
+  background-image: url('images.jpeg');
   background-size: cover;
-  /* border: 1px solid #a0a096; */
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
-}
-
-.react-calendar--doubleView {
-  width: 700px;
 }
 
 .react-calendar--doubleView .react-calendar__viewContainer {
@@ -246,10 +211,6 @@ td {
 .react-calendar__tile--active:enabled:focus {
   background: #1087ff;
 }
-/* 
-.react-calendar--selectRange .react-calendar__tile--hover {
-  background-color: #a1c4f5;
-} */
 
 /* search */
 .has-search .form-control {
@@ -298,7 +259,6 @@ span {
   width: 60px;
   margin-top: 48px;
   opacity: 0.7;
-  /* background-repeat: repeat-x; */
 }
 
 .logoName {
@@ -308,9 +268,38 @@ span {
   padding-left: 10px;
   padding-top: 48px;
   opacity: 0.7;
-  /* top: 10.5%; */
 }
+
 .logo-container {
-  /* float: inherit; */
-  margin: 0px 0px 0px 34%;
+  display: flex;
+  justify-content: center;
+  transform: translate(-12%, 0);
+}
+
+/* Responsive layout - makes a one column-layout instead of two-column layout */
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+  .flex-item-left {
+    flex: 1;
+  }
+
+  .flex-item-right {
+    flex: 1;
+  }
+  .has-search .form-control {
+    width: 100%;
+    margin: 0px 0px 0px 0px;
+  }
+  .logo-container {
+    transform: translate(-42%, 0);
+  }
+  .logoName{
+    font-size: 30px;
+    padding-top: 56px;
+  }
+  .form-control-feedback{
+    margin: 0 !important;
+  }
 }
