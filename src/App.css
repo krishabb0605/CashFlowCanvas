@@ -57,8 +57,6 @@ body {
 
 form {
   padding: 10px;
-  margin: -10px 2px 0px 0px;
-  height: 270px;
   background-image: url('images1.jpeg');
   background-size: cover;
 }

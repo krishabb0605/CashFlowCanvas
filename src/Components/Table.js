@@ -82,9 +82,11 @@ function Table({ tableData, setTableData }) {
   };
 
   const handleDeleteSelected = () => {
-    const newData = tableData.filter(
-      (_, index) => !selectedRows.includes(index)
-    );
+    let isConfirm = window.confirm('Sure you want to delete data ?');
+
+    const newData = isConfirm
+      ? tableData.filter((_, index) => !selectedRows.includes(index))
+      : tableData;
     setTableData(newData);
     setSelectedRows([]);
   };
@@ -102,7 +104,7 @@ function Table({ tableData, setTableData }) {
             border: '1px solid black',
           }}
         >
-          <table className='table' style={{margin:'0px'}}>
+          <table className='table' style={{ margin: '0px' }}>
             <thead>
               <tr
                 style={{
