@@ -5,7 +5,6 @@ import { CSVLink } from 'react-csv';
 function Table({ tableData, setTableData }) {
   const [sortOrder, setSortOrder] = useState('asc');
   const [downloadFormat, setDownloadFormat] = useState('');
-
   // sorting ...
   const handleSortByDate = () => {
     const sortedData =
@@ -27,7 +26,6 @@ function Table({ tableData, setTableData }) {
     content: () => componentPDF.current,
     documentTitle: 'userdata',
   });
-
   // *****************EDIT & SAVE***********************************
 
   const [editingRowIndex, setEditingRowIndex] = useState(null);
@@ -37,7 +35,6 @@ function Table({ tableData, setTableData }) {
     amount: '',
     date: '',
   });
-
   const handleEditClick = (index) => {
     setEditingRowIndex(index);
     setNewData({ ...tableData[index] });
@@ -45,6 +42,7 @@ function Table({ tableData, setTableData }) {
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
+
     setNewData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -106,96 +104,26 @@ function Table({ tableData, setTableData }) {
         >
           <table className='table' style={{ margin: '0px' }}>
             <thead>
-              <tr
-                style={{
-                  borderWidth: '1px',
-                  borderStyle: 'solid',
-                  borderColor: 'black',
-                }}
-              >
-                <th
-                  style={{
-                    backgroundColor: '#b9b9d7',
-                    fontWeight: 'bold',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    borderColor: 'black',
-                  }}
-                >
+              <tr className='table-row'>
+                <th className='table-header'>
                   <input
                     type='checkbox'
                     checked={selectedRows.length === tableData.length}
                     onChange={handleSelectAll}
                   />
                 </th>
+                <th className='table-header'>Index</th>
+                <th className='table-header'>Expence name</th>
+                <th className='table-header'>Expence amount</th>
+                <th className='table-header'>Get/spend</th>
                 <th
-                  style={{
-                    backgroundColor: '#b9b9d7',
-                    fontWeight: 'bold',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    borderColor: 'black',
-                  }}
-                >
-                  Index
-                </th>
-                <th
-                  style={{
-                    backgroundColor: '#b9b9d7',
-                    fontWeight: 'bold',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    borderColor: 'black',
-                  }}
-                >
-                  Expence name
-                </th>
-                <th
-                  style={{
-                    backgroundColor: '#b9b9d7',
-                    fontWeight: 'bold',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    borderColor: 'black',
-                  }}
-                >
-                  Expence amount
-                </th>
-                <th
-                  style={{
-                    backgroundColor: '#b9b9d7',
-                    fontWeight: 'bold',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    borderColor: 'black',
-                  }}
-                >
-                  Get/spend
-                </th>
-                <th
-                  style={{
-                    backgroundColor: '#b9b9d7',
-                    fontWeight: 'bold',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    borderColor: 'black',
-                  }}
+                  className='table-header pointer1'
                   onClick={handleSortByDate}
-                  className='pointer1'
                 >
                   <i className='fa fa-sort' />
                   Date
                 </th>
-                <th
-                  style={{
-                    backgroundColor: '#b9b9d7',
-                    fontWeight: 'bold',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    borderColor: 'black',
-                  }}
-                >
-                  {' '}
+                <th className='table-header'>
                   <span
                     className='fa fa-trash-o pointer1'
                     onClick={handleDeleteSelected}
@@ -207,14 +135,7 @@ function Table({ tableData, setTableData }) {
             <tbody>
               {tableData.map((data, index) => {
                 return (
-                  <tr
-                    key={index}
-                    style={{
-                      borderWidth: '1px',
-                      borderStyle: 'solid',
-                      borderColor: 'black',
-                    }}
-                  >
+                  <tr key={index} className='table-row'>
                     <td>
                       <input
                         type='checkbox'
@@ -222,22 +143,8 @@ function Table({ tableData, setTableData }) {
                         onChange={() => handleRowSelect(index)}
                       />
                     </td>
-                    <td
-                      style={{
-                        borderWidth: '1px',
-                        borderStyle: 'solid',
-                        borderColor: 'black',
-                      }}
-                    >
-                      {index + 1}
-                    </td>
-                    <td
-                      style={{
-                        borderWidth: '1px',
-                        borderStyle: 'solid',
-                        borderColor: 'black',
-                      }}
-                    >
+                    <td className='table-row'>{index + 1}</td>
+                    <td className='table-row'>
                       {editingRowIndex === index ? (
                         <input
                           name='name'
@@ -249,12 +156,10 @@ function Table({ tableData, setTableData }) {
                       )}
                     </td>
                     <td
+                      className='table-row'
                       style={{
                         color: data.type == 'GET' ? 'green' : 'red',
                         fontWeight: 'bold',
-                        borderWidth: '1px',
-                        borderStyle: 'solid',
-                        borderColor: 'black',
                       }}
                     >
                       {editingRowIndex === index ? (
@@ -267,13 +172,7 @@ function Table({ tableData, setTableData }) {
                         data.amount
                       )}
                     </td>
-                    <td
-                      style={{
-                        borderWidth: '1px',
-                        borderStyle: 'solid',
-                        borderColor: 'black',
-                      }}
-                    >
+                    <td className='table-row'>
                       {editingRowIndex === index ? (
                         <select
                           value={newData.type}
@@ -287,31 +186,27 @@ function Table({ tableData, setTableData }) {
                         data.type
                       )}
                     </td>
-                    <td
-                      style={{
-                        borderWidth: '1px',
-                        borderStyle: 'solid',
-                        borderColor: 'black',
-                      }}
-                    >
-                      {data.date instanceof Date
-                        ? data.date.toLocaleDateString('en-GB')
-                        : ''}
+                    <td className='table-row'>
+                      {editingRowIndex === index ? (
+                        <input
+                          type='date'
+                          value={newData.date}
+                          onChange={handleFormChange}
+                          name='date'
+                        />
+                      ) : data.date instanceof Date ? (
+                        data.date.toLocaleDateString('en-GB')
+                      ) : (
+                        data.date
+                      )}
                     </td>
-                    <td
-                      style={{
-                        borderWidth: '1px',
-                        borderStyle: 'solid',
-                        borderColor: 'black',
-                      }}
-                    >
+                    <td className='table-row'>
                       {editingRowIndex === index ? (
                         <span
                           className='fa fa-check-square-o pointer1'
                           onClick={handleFormSubmit}
                         >
-                          {' '}
-                          &nbsp; Save
+                          &nbsp;Save
                         </span>
                       ) : (
                         <span
@@ -321,7 +216,6 @@ function Table({ tableData, setTableData }) {
                           &nbsp;Edit
                         </span>
                       )}
-                      {/* <span className="fa fa-trash-o pointer1" onClick={() => onDeleteRow(index)} /> */}
                     </td>
                   </tr>
                 );

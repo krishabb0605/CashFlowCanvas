@@ -67,7 +67,14 @@ td {
   margin: 20px 0px 20px 0px;
   padding: 5px;
 }
-
+.table-row,
+.table-header {
+  border: 1px solid black;
+}
+.table-header {
+  font-weight: bold;
+  background-color: #b9b9d7 !important;
+}
 .pointer {
   cursor: pointer;
 }
@@ -246,7 +253,7 @@ td {
 .pointer1:hover {
   cursor: pointer;
   background-color: #edf9fc;
-  font-weight: bold;
+  opacity: 0.8;
 }
 span {
   padding: 5px;
@@ -293,11 +300,11 @@ span {
   .logo-container {
     transform: translate(-42%, 0);
   }
-  .logoName{
+  .logoName {
     font-size: 30px;
     padding-top: 56px;
   }
-  .form-control-feedback{
+  .form-control-feedback {
     margin: 0 !important;
   }
 }

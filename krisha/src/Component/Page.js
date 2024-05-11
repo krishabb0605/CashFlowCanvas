@@ -5,7 +5,6 @@ export default function Page() {
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevents the default form submission behavior
 
-    
     // Access form data using event.target
     const formData = {
       name: event.target.name.value,
@@ -24,11 +23,11 @@ export default function Page() {
       range: event.target.range.value,
     };
 
-    if (event.target.name.value == 0){
-      alert("Empty name")
+    if (event.target.name.value == 0) {
+      alert('Empty name');
     }
-    if(event.target.gender.value == 0){
-      alert("hello")
+    if (event.target.gender.value == 0) {
+      alert('hello');
     }
     // Log the form data to the console
     console.log('Form Data:', formData);
@@ -86,13 +85,11 @@ export default function Page() {
                 <br />
                 <input type='time' name='time' />
                 <br />
-
                 <label htmlFor='Gender'>Select Gender : </label> <br />
                 <input type='radio' name='gender' value='male' id='male' />
                 <label htmlFor='male'>male</label>
                 <input type='radio' name='gender' value='female' id='female' />
                 <label htmlFor='female'>female</label> <br />
-
                 <label htmlFor='Hobbies'>Select Hobbies : </label>
                 <br />
                 <div className='c'>
@@ -125,14 +122,11 @@ export default function Page() {
                     <br />
                   </div>
                 </div>
-
                 <label htmlFor='File'>Select File : </label> <br />
                 <input type='file' name='file' />
                 <br />
-
                 <label htmlFor='range'>Select Range : </label> <br />
                 <input type='range' name='range' /> <br />
-
                 <input type='submit' name='submit' value='submit' />
                 <input type='reset' name='reset' value='reset' />
               </div>

@@ -32,6 +32,9 @@ const App = () => {
 
   const [formObject, setFormObject] = useState({});
 
+  const [Errors, setErrors] = useState({});
+  const [Submitting, setSubmitting] = useState({});
+
   const onValChange = (event) => {
     const { name, value } = event.target;
     setFormObject({ ...formObject, [name]: value });
@@ -43,10 +46,11 @@ const App = () => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    const checkVal = !Object.values(formObject).every((res) => res === '');
-    if (checkVal && validateValues(formObject) === 1) {
+
+    if (validateValues(formObject) === 1) {
       const newData = { ...formObject, date: selectedDate };
       const dataObj = (data) => [...data, newData];
+
       setTableData(dataObj);
       setSelectedDate(null);
       setFormObject({});
@@ -68,19 +72,17 @@ const App = () => {
   };
 
   // for validation
-  const [Errors, setErrors] = useState({});
-  const [Submitting, setSubmitting] = useState({});
 
   const validateValues = (inputValues) => {
-    if (inputValues.name.length === 0) {
+    if (!inputValues.name) {
       alert('Name is empty');
       return 0;
     }
-    if (inputValues.amount.length === 0) {
+    if (!inputValues.amount) {
       alert('Amount is empty');
       return 0;
     }
-    if (inputValues.type.length === 0) {
+    if (!inputValues.type) {
       alert('Please select type');
       return 0;
     }
