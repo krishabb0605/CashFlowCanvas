@@ -90,8 +90,12 @@ const App = () => {
   };
 
   return (
-    <div>
-      <div></div>
+    <div
+      className='mainClass'
+      style={{
+        '--windowHeight': `${window.innerHeight}px`,
+      }}
+    >
       {/* header total amount display */}
       <div className='amount'>
         <div className='logo-container'>
@@ -134,7 +138,7 @@ const App = () => {
           <div className='flex-container1'>
             <div className='flex-item-right1'>
               {/* search bar */}
-              <div className='form-group has-search'>
+              <div className='form-group has-search position-relative'>
                 <span className='fa fa-search form-control-feedback'></span>
                 <input
                   type='text'
