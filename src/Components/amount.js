@@ -11,7 +11,13 @@ const Amount = ({ amountData }) => {
     }
   });
 
-  return <span id='visible'>Total amount: {parseFloat(amount)}</span>;
+  return (
+    <div className='fs-5 w-100 position-relative '>
+      <span className='animateText text-nowrap'>
+        Total amount: {parseFloat(amount)}
+      </span>
+    </div>
+  );
 };
 
 export default Amount;

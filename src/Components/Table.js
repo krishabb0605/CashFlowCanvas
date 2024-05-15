@@ -93,39 +93,32 @@ function Table({ tableData, setTableData }) {
 
   return (
     <div>
-      <div id='table' ref={componentPDF}>
-        <div
-          style={{
-            width: '100%',
-            overflow: 'auto',
-            margin: '10px 0',
-            border: '1px solid black',
-          }}
-        >
-          <table className='table' style={{ margin: '0px' }}>
+      <div ref={componentPDF}>
+        <div className='overflow-auto table-width px-2'>
+          <table className='table m-0'>
             <thead>
               <tr className='table-row'>
-                <th className='table-header'>
+                <th className='table-header fw-bold'>
                   <input
                     type='checkbox'
                     checked={selectedRows.length === tableData.length}
                     onChange={handleSelectAll}
                   />
                 </th>
-                <th className='table-header'>Index</th>
-                <th className='table-header'>Expence name</th>
-                <th className='table-header'>Expence amount</th>
-                <th className='table-header'>Get/spend</th>
+                <th className='table-header fw-bold'>Index</th>
+                <th className='table-header fw-bold'>Expence name</th>
+                <th className='table-header fw-bold'>Expence amount</th>
+                <th className='table-header fw-bold'>Get/spend</th>
                 <th
-                  className='table-header pointer1'
+                  className='table-header fw-bold pointer'
                   onClick={handleSortByDate}
                 >
                   <i className='fa fa-sort' />
                   Date
                 </th>
-                <th className='table-header'>
+                <th className='table-header fw-bold'>
                   <span
-                    className='fa fa-trash-o pointer1'
+                    className='fa fa-trash-o pointer'
                     onClick={handleDeleteSelected}
                   />
                   Action
@@ -156,10 +149,9 @@ function Table({ tableData, setTableData }) {
                       )}
                     </td>
                     <td
-                      className='table-row'
+                      className='table-row fw-bold'
                       style={{
-                        color: data.type == 'GET' ? 'green' : 'red',
-                        fontWeight: 'bold',
+                        color: data.type === 'GET' ? 'green' : 'red',
                       }}
                     >
                       {editingRowIndex === index ? (
@@ -203,14 +195,14 @@ function Table({ tableData, setTableData }) {
                     <td className='table-row'>
                       {editingRowIndex === index ? (
                         <span
-                          className='fa fa-check-square-o pointer1'
+                          className='fa fa-check-square-o pointer'
                           onClick={handleFormSubmit}
                         >
                           &nbsp;Save
                         </span>
                       ) : (
                         <span
-                          className='fa fa-edit pointer1'
+                          className='fa fa-edit pointer'
                           onClick={() => handleEditClick(index)}
                         >
                           &nbsp;Edit
@@ -226,8 +218,10 @@ function Table({ tableData, setTableData }) {
       </div>
 
       <label>Download as : &nbsp; </label>
-      <select value={downloadFormat} onChange={handleDownloadFormatChange}>
-        <option>Select format</option>
+      <select value={downloadFormat} onChange={handleDownloadFormatChange} className='my-2'>
+        <option value='' disabled >
+          Select format
+        </option>
         <option value='pdf'>PDF</option>
         <option value='csv'>CSV</option>
       </select>
