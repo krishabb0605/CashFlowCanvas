@@ -1,10 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { CSVLink } from 'react-csv';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function Table({ tableData, setTableData }) {
   const [sortOrder, setSortOrder] = useState('asc');
   const [downloadFormat, setDownloadFormat] = useState('');
+
+  const today = new Date();
   // sorting ...
   const handleSortByDate = () => {
     const sortedData =
@@ -35,18 +39,25 @@ function Table({ tableData, setTableData }) {
     amount: '',
     date: '',
   });
+
   const handleEditClick = (index) => {
     setEditingRowIndex(index);
     setNewData({ ...tableData[index] });
   };
 
   const handleFormChange = (event) => {
-    const { name, value } = event.target;
-
-    setNewData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    if (event.target) {
+      const { name, value } = event.target;
+      setNewData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    } else {
+      setNewData((prevData) => ({
+        ...prevData,
+        date: event,
+      }));
+    }
   };
 
   const handleFormSubmit = (event) => {
@@ -141,6 +152,7 @@ function Table({ tableData, setTableData }) {
                       {editingRowIndex === index ? (
                         <input
                           name='name'
+                          className='form-control'
                           value={newData.name}
                           onChange={handleFormChange}
                         />
@@ -157,6 +169,7 @@ function Table({ tableData, setTableData }) {
                       {editingRowIndex === index ? (
                         <input
                           name='amount'
+                          className='form-control'
                           value={newData.amount}
                           onChange={handleFormChange}
                         />
@@ -169,6 +182,7 @@ function Table({ tableData, setTableData }) {
                         <select
                           value={newData.type}
                           name='type'
+                          className='form-control'
                           onChange={handleFormChange}
                         >
                           <option value='GET'>GET</option>
@@ -180,11 +194,18 @@ function Table({ tableData, setTableData }) {
                     </td>
                     <td className='table-row'>
                       {editingRowIndex === index ? (
-                        <input
-                          type='date'
-                          value={newData.date}
+                        // <input
+                        //   type='date'
+                        //   // value={newData.date}
+                        //   onChange={handleFormChange}
+                        //   name='date'
+                        // />
+                        <ReactDatePicker
+                          selected={newData.date}
                           onChange={handleFormChange}
-                          name='date'
+                          dateFormat='dd/MM/yyyy'
+                          maxDate={today}
+                          className='form-control'
                         />
                       ) : data.date instanceof Date ? (
                         data.date.toLocaleDateString('en-GB')
@@ -218,8 +239,12 @@ function Table({ tableData, setTableData }) {
       </div>
 
       <label>Download as : &nbsp; </label>
-      <select value={downloadFormat} onChange={handleDownloadFormatChange} className='my-2'>
-        <option value='' disabled >
+      <select
+        value={downloadFormat}
+        onChange={handleDownloadFormatChange}
+        className='my-2'
+      >
+        <option value='' disabled>
           Select format
         </option>
         <option value='pdf'>PDF</option>
